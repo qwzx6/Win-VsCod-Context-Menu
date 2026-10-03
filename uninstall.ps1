@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Desinstalación completa de las entradas universales de VS Code en el menú contextual.
+    Desinstalación local completa de las entradas de VS Code.
 #>
 
 $IsAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -21,10 +21,10 @@ foreach ($BasePath in $Paths) {
     if (Test-Path $BasePath) {
         try {
             Remove-Item -Path $BasePath -Recurse -Force
-            Write-Host "Eliminado correctamente: $BasePath" -ForegroundColor Green
+            Write-Host "Eliminado: $BasePath" -ForegroundColor Green
         } catch {
             Write-Error "No se pudo eliminar: $BasePath"
         }
     }
 }
-Write-Host "Menú contextual restaurado al estado original del sistema." -ForegroundColor Yellow
+Write-Host "Menú contextual limpio y restaurado al estado original." -ForegroundColor Yellow
