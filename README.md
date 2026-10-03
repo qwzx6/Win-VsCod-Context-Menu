@@ -1,15 +1,15 @@
-## 🚀 Instalación Rápida (Online)
+## 🚀 Instalación Pública Universal (Cualquier Usuario)
 
-Abre una ventana de **PowerShell** y ejecuta el siguiente comando:
+Copia y pega este comando en tu terminal de **PowerShell** para descargarlo e instalarlo directamente desde el repositorio original en la nube:
 
 ```powershell
-irm https://githubusercontent.com | iex
+\(repoUrl = "https://githubusercontent.com"; irm "\)repoUrl/install.ps1" | iex
 ```
 
-## 🗑️ Desinstalación Rápida (Online)
+## 🗑️ Desinstalación Rápida
 
-Si alguna vez decides remover la opción, puedes limpiarla del registro ejecutando:
+Si deseas remover la integración por completo de tu sistema, ejecuta el limpiador remoto mediante:
 
 ```powershell
-irm https://githubusercontent.com | iex
+\(repoUrl = "https://githubusercontent.com"; irm "\)repoUrl/uninstall.ps1" | iex
 ```
