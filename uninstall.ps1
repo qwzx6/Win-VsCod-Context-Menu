@@ -1,28 +1,30 @@
 <#
 .SYNOPSIS
-    Desinstalación online de "Abrir con VS Code" del menú contextual.
-.LICENSE
-    MIT License
+    Desinstalación completa de las entradas universales de VS Code en el menú contextual.
 #>
 
 $IsAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if ($IsAdmin) {
-    Write-Host "Buscando en la configuración global (Administrador)..." -ForegroundColor Green
-    $BasePath = "Registry::HKEY_CLASSES_ROOT\Directory\shell\VSCodeOpen"
+    $Paths = @(
+        "Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shell\VSCodeOpen",
+        "Registry::HKEY_CLASSES_ROOT\Directory\Background\shell\VSCodeOpen"
+    )
 } else {
-    Write-Host "Buscando en la configuración local (Usuario estándar)..." -ForegroundColor Cyan
-    $BasePath = "Registry::HKEY_CURRENT_USER\Software\Classes\Directory\shell\VSCodeOpen"
+    $Paths = @(
+        "Registry::HKEY_CURRENT_USER\Software\Classes\AllFilesystemObjects\shell\VSCodeOpen",
+        "Registry::HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\VSCodeOpen"
+    )
 }
 
-if (Test-Path $BasePath) {
-    try {
-        # Elimina la clave y todas sus subclaves (como 'command')
-        Remove-Item -Path $BasePath -Recurse -Force
-        Write-Host "¡Éxito! La opción 'Abrir con Visual Studio Code' ha sido eliminada." -ForegroundColor Green
-    } catch {
-        Write-Error "No se pudo eliminar la clave del registro: $_"
+foreach ($BasePath in $Paths) {
+    if (Test-Path $BasePath) {
+        try {
+            Remove-Item -Path $BasePath -Recurse -Force
+            Write-Host "Eliminado correctamente: $BasePath" -ForegroundColor Green
+        } catch {
+            Write-Error "No se pudo eliminar: $BasePath"
+        }
     }
-} else {
-    Write-Host "No se encontró la opción en el registro. Ya está desinstalado o se instaló con otros privilegios." -ForegroundColor Yellow
 }
+Write-Host "Menú contextual restaurado al estado original del sistema." -ForegroundColor Yellow
