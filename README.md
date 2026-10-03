@@ -1,15 +1,14 @@
-## 🚀 Instalación Pública Universal (Cualquier Usuario)
+# 🛠️ Windows Context Menu for VS Code
 
-Copia y pega este comando en tu terminal de **PowerShell** para descargarlo e instalarlo directamente desde el repositorio original en la nube:
+Este proyecto agrega de forma fácil la opción **"Abrir con Visual Studio Code"** al hacer clic derecho sobre cualquier archivo (fotos, música, videos, código), carpeta o fondo vacío en Windows.
 
-```powershell
-\(repoUrl = "https://githubusercontent.com"; irm "\)repoUrl/install.ps1" | iex
-```
+## 📥 Cómo usar este proyecto
 
-## 🗑️ Desinstalación Rápida
+1. Descarga el archivo `install.ps1` de este repositorio.
+2. Haz clic derecho sobre el archivo descargado y selecciona **Ejecutar con PowerShell**.
+3. ¡Listo! Ya tendrás la opción integrada al hacer clic derecho en cualquier parte del sistema.
 
-Si deseas remover la integración por completo de tu sistema, ejecuta el limpiador remoto mediante:
+## 🗑️ Cómo desinstalar
 
-```powershell
-\(repoUrl = "https://githubusercontent.com"; irm "\)repoUrl/uninstall.ps1" | iex
-```
+1. Descarga el archivo `uninstall.ps1`.
+2. Haz clic derecho sobre él y selecciona **Ejecutar con PowerShell** para limpiar tu sistema.
